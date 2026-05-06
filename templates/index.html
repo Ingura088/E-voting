@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MMU E-Voting System</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+<body>
+
+<header id="site-header">
+    <div class="nav-inner">
+        <div class="brand">
+            <img src="{% static 'images/mmu_logo.png' %}" id="brand-logo">
+            <span class="brand-text">MMU E-Voting</span>
+        </div>
+
+        <nav class="primary-nav">
+            <a href="#" class="nav-link active" data-page="home">Home</a>
+            <a href="#" class="nav-link" data-page="aspirants">Aspirants</a>
+            <a href="#" class="nav-link" data-page="ballot">Live Results</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ===== HOME PAGE (LOGIN) ===== -->
+<section id="home">
+    <h1>Welcome to MMU E-Voting System</h1>
+    <p>Login to access the ballot and aspirants page.</p>
+
+    <div class="login-box">
+        <h3>Student Login</h3>
+
+        <input type="text" id="regNo" placeholder="Admission Number (e.g SCT-123-456/1999)">
+        <input type="password" id="password" placeholder="Password">
+
+        <button class="login-btn" id="loginBtn">Login</button>
+
+<p><a href="#" id="registerLink">Register here</a></p>
+
+<div id="register-box" style="display:none; margin-top:15px;">
+    <h3>Register</h3>
+
+    <input type="text" id="regNoReg" placeholder="Admission Number">
+    <input type="password" id="passwordReg" placeholder="Password">
+
+    <button id="registerBtn">Submit Registration</button>
+</div>
+    </div>
+</section>
+
+
+<!-- ===== ASPIRANTS PAGE ===== -->
+<section id="aspirants" style="display:none;">
+    <h2>Aspirants</h2>
+    <div id="aspirants-list"></div>
+</section>
+
+
+<!-- ===== BALLOT PAGE (LIVE RESULTS) ===== -->
+<section id="ballot" style="display:none;">
+    <h2>Live Results</h2>
+    <div id="live-results"></div>
+</section>
+
+
+<footer>
+    © 2025 MMU E-Voting System
+</footer>
+
+<script src="{% static 'main.js' %}"></script>
+</body>
+</html>

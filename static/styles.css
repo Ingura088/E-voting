@@ -1,0 +1,191 @@
+/* GENERAL PAGE */
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff 40%,
+        #dfe8f7 60%,
+        #b6c0cf 100%
+    );
+
+    min-height:100vh;
+}
+
+
+/* HEADER */
+header{
+    background:#0b2c5f;
+    color:white;
+    text-align:center;
+    padding:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+header h1{
+    margin:0;
+}
+
+/* NAVIGATION BAR */
+nav{
+background:white;
+padding:15px 25px;
+display:flex;
+justify-content:center;
+gap:20px;
+box-shadow:0 4px 15px rgba(0,0,0,0.08);
+border-radius:0 0 20px 20px;
+margin-bottom:30px;
+}
+
+/* NAV BUTTONS */
+.nav-link{
+background:#f2f6ff;
+color:#0b1f4d;
+padding:12px 28px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+border:2px solid transparent;
+}
+
+/* HOVER EFFECT */
+.nav-link:hover{
+background:#0b1f4d;
+color:white;
+transform:translateY(-3px);
+box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* ACTIVE PAGE BUTTON */
+.nav-link.active{
+background:#0b1f4d;
+color:white;
+border:2px solid #163d8f;
+box-shadow:0 4px 10px rgba(0,0,0,0.12);
+}
+
+/* PAGE SECTIONS */
+section{
+    padding:30px;
+}
+
+
+/* ASPIRANT CARDS */
+.aspirant-card{
+
+    background:rgb(195, 205, 240);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin:20px auto;
+
+    width:70%;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+    transition:0.3s;
+}
+
+.aspirant-card:hover{
+    transform:scale(1.02);
+}
+
+.aspirant-card h3{
+    color:#192942;
+}
+
+.aspirant-card p{
+    font-size:18px;
+}
+
+
+/* VOTE BUTTON */
+.aspirant-card button{
+
+    background:#0b2c5f;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    margin-top:10px;
+}
+
+.aspirant-card button:hover{
+    background:#163f7a;
+}
+
+
+/* RESULTS BOX */
+.results-bar{
+
+    background:white;
+
+    padding:20px;
+
+    margin:20px auto;
+
+    width:70%;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+/* PROGRESS BAR */
+.progress{
+
+    background:#ddd;
+
+    height:30px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    margin-top:12px;
+}
+
+.progress-inner{
+
+    background:#0b2c5f;
+
+    height:100%;
+
+    border-radius:30px;
+}
+
+
+/* LOGIN BOX */
+.login-box{
+
+    background:white;
+
+    width:400px;
+
+    margin:50px auto;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+input{
+    width:90%;
+    padding:12px;
+    margin:10px 0;
+}
