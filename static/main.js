@@ -1,14 +1,14 @@
+const BASE_URL = "https://e-voting-hn92.onrender.com";
+
 const pages = ["home", "aspirants", "ballot"];
 
 
 /* PAGE NAVIGATION */
 function showPage(page) {
-
     pages.forEach(p => {
         document.getElementById(p).style.display =
             (p === page) ? "block" : "none";
     });
-
 }
 
 
@@ -27,7 +27,6 @@ document.querySelectorAll(".nav-link").forEach(el => {
         if (el.dataset.page === "ballot") {
             loadResults();
         }
-
     };
 
 });
@@ -45,7 +44,7 @@ document.getElementById("loginBtn").onclick = async () => {
 
     try {
 
-        let res = await fetch("http://127.0.0.1:8000/api/login/", {
+        let res = await fetch(`${BASE_URL}/api/login/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -73,51 +72,58 @@ document.getElementById("loginBtn").onclick = async () => {
         }
 
     } catch(error) {
-
         console.error(error);
         alert("Server error.");
-
     }
-
 };
 
 
-// SHOW REGISTER FORM
+/* SHOW REGISTER FORM */
 document.getElementById("registerLink").onclick = function(e) {
     e.preventDefault();
 
     let box = document.getElementById("register-box");
 
-    box.style.display =
-        (box.style.display === "none") ? "block" : "none";
+    if (box) {
+        box.style.display =
+            (box.style.display === "none") ? "block" : "none";
+    } else {
+        alert("Register form not found in HTML");
+    }
 };
 
 
-// REGISTER BUTTON (UPDATED INPUTS)
+/* REGISTER */
 document.getElementById("registerBtn").onclick = async () => {
 
-    let reg = document.getElementById("regNoReg").value.trim();
-    let pass = document.getElementById("passwordReg").value.trim();
+    let reg = document.getElementById("regNoReg")?.value.trim();
+    let pass = document.getElementById("passwordReg")?.value.trim();
 
     if (!reg || !pass) {
         alert("Enter admission number and password");
         return;
     }
 
-    let res = await fetch("http://127.0.0.1:8000/api/register/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            admission_no: reg,
-            password: pass
-        })
-    });
+    try {
 
-    let data = await res.json();
+        let res = await fetch(`${BASE_URL}/api/register/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                admission_no: reg,
+                password: pass
+            })
+        });
 
-    alert(data.message);
+        let data = await res.json();
+        alert(data.message);
+
+    } catch(error) {
+        console.error(error);
+        alert("Registration failed");
+    }
 };
 
 
@@ -126,7 +132,7 @@ async function loadAspirants() {
 
     try {
 
-        let res = await fetch("http://127.0.0.1:8000/api/aspirants/");
+        let res = await fetch(`${BASE_URL}/api/aspirants/`);
         let data = await res.json();
 
         let container = document.getElementById("aspirants-list");
@@ -145,41 +151,35 @@ async function loadAspirants() {
         });
 
     } catch(error) {
-
         console.error(error);
         alert("Could not load aspirants.");
-
     }
-
 }
 
 
 /* VOTE */
 async function vote(id) {
 
-    let res = await fetch("http://127.0.0.1:8000/api/vote/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            aspirant: id,
-            student_id: localStorage.getItem("student_id")
-        })
-    });
-
-    let text = await res.text();
-
-    console.log("RAW RESPONSE:", text);
-
     try {
-        let data = JSON.parse(text);
-        alert(data.message);
-    } catch (e) {
-        console.error("Not JSON response:", text);
-        alert("Server error (check console)");
-    }
 
+        let res = await fetch(`${BASE_URL}/api/vote/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                aspirant: id,
+                student_id: localStorage.getItem("student_id")
+            })
+        });
+
+        let data = await res.json();
+        alert(data.message);
+
+    } catch(error) {
+        console.error(error);
+        alert("Vote failed");
+    }
 }
 
 
@@ -188,7 +188,7 @@ async function loadResults() {
 
     try {
 
-        let res = await fetch("http://127.0.0.1:8000/api/results/");
+        let res = await fetch(`${BASE_URL}/api/results/`);
         let results = await res.json();
 
         let div = document.getElementById("live-results");
@@ -214,11 +214,8 @@ async function loadResults() {
         });
 
     } catch(error) {
-
         console.error("Results error:", error);
-
     }
-
 }
 
 
